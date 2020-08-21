@@ -4,7 +4,6 @@
 [![CI](https://github.com/{{username}}/{{project-name}}/workflows/General/badge.svg)](https://github.com/poetry-book/poetry-book-cli/actions)
 [![Coverage Status](https://coveralls.io/repos/github/{{username}}/{{project-name}}/badge.svg?branch=master)](https://coveralls.io/github/MarcoIeni/poke-speare?branch=master)
 
-
 ## Installation
 
 ### Cargo
