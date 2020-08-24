@@ -1,8 +1,8 @@
 # {{project-name}}
 
 [![Crates.io](https://img.shields.io/crates/v/{{project-name}}.svg)](https://crates.io/crates/poke-speare)
-[![CI](https://github.com/{{username}}/{{project-name}}/workflows/General/badge.svg)](https://github.com/poetry-book/poetry-book-cli/actions)
-[![Coverage Status](https://coveralls.io/repos/github/{{username}}/{{project-name}}/badge.svg?branch=master)](https://coveralls.io/github/MarcoIeni/poke-speare?branch=master)
+[![CI](https://github.com/{[username]}/{{project-name}}/workflows/General/badge.svg)](https://github.com/poetry-book/poetry-book-cli/actions)
+[![Coverage Status](https://coveralls.io/repos/github/{[username]}/{{project-name}}/badge.svg?branch=master)](https://coveralls.io/github/MarcoIeni/poke-speare?branch=master)
 
 ## Installation
 
