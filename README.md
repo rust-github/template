@@ -2,7 +2,7 @@
 
 [![Crates.io](https://img.shields.io/crates/v/{{project-name}}.svg)](https://crates.io/crates/poke-speare)
 [![Docs.rs](https://docs.rs/{{project-name}}/badge.svg)](https://docs.rs/{{project-name}})
-[![CI](https://github.com/{[username]}/{{project-name}}/workflows/General/badge.svg)](https://github.com/poetry-book/poetry-book-cli/actions)
+[![CI](https://github.com/{[username]}/{{project-name}}/workflows/General/badge.svg)](https://github.com/{[username]}/{{project-name}}/actions)
 [![Coverage Status](https://coveralls.io/repos/github/{[username]}/{{project-name}}/badge.svg?branch=master)](https://coveralls.io/github/{[username]}/{{project-name}}?branch=master)
 
 ## Installation
