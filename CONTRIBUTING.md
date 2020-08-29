@@ -28,16 +28,17 @@ Update the changes you have made in
 file under the **Unreleased** section.
 
 Add the changes of your pull request to one of the following subsections,
-depending on the types of changes defined by [[https://keepachangelog.com/en/1.0.0/][Keep a changelog]]:
+depending on the types of changes defined by
+[[https://keepachangelog.com/en/1.0.0/][Keep a changelog]]:
 
-- Added :: for new features.
-- Changed :: for changes in existing functionality.
-- Deprecated :: for soon-to-be removed features.
-- Removed :: for now removed features.
-- Fixed :: for any bug fixes.
-- Security :: in case of vulnerabilities.
+- `Added` for new features.
+- `Changed` for changes in existing functionality.
+- `Deprecated` for soon-to-be removed features.
+- `Removed` for now removed features.
+- `Fixed` for any bug fixes.
+- `Security` in case of vulnerabilities.
 
-If the required subsection does not exist yet under =Unreleased=, create it!
+If the required subsection does not exist yet under **Unreleased**, create it!
 
 ## Developing
 
