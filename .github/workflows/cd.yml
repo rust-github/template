@@ -76,6 +76,3 @@ jobs:
         with:
           command: publish
           args: --token ${{ secrets.CARGO_API_KEY }} --allow-dirty
-
-
-# credits: https://github.com/Rigellute/spotify-tui/blob/master/.github/workflows/cd.yml
