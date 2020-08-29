@@ -34,3 +34,47 @@ depending on the types of changes defined by [[https://keepachangelog.com/en/1.0
 - Security :: in case of vulnerabilities.
 
 If the required subsection does not exist yet under =Unreleased=, create it!
+
+## Developing
+
+### Set up
+
+This is no different than other Rust projects.
+
+```shell
+git clone https://github.com/{[username]}/{{project-name}}
+cd {{project-name}}
+cargo build
+```
+
+### Useful Commands
+
+- Build and run release version:
+
+  ```shell
+  cargo build --release && cargo run --release
+  ```
+
+- Run Clippy:
+
+  ```shell
+  cargo clippy --all
+  ```
+
+- Run all tests:
+
+  ```shell
+  cargo test --all
+  ```
+
+- Check to see if there are code formatting issues
+
+  ```shell
+  cargo fmt --all -- --check
+  ```
+
+- Format the code in the project
+
+  ```shell
+  cargo fmt --all
+  ```
