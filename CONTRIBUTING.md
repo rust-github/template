@@ -12,8 +12,6 @@ Issues have to be reported on our [[https://github.com/{[username]}/{{project-na
 - Check that the issue has not already been reported.
   - This can be achieved by searching keywords on the [[https://github.com/{[username]}/{{project-name}}/issues][issues tracker]].
 - Try to use a clear title, and describe your problem with complete sentences.
-  - If it is a bug report, try to include details on how to reproduce it, like
-    a step by step guide.
 
 ## Pull requests
 
