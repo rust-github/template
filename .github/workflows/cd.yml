@@ -47,7 +47,7 @@ jobs:
         run: |
           cd target/${[ matrix.target }}/release
           strip spt${[ matrix.binary_postfix }}
-          tar czvf {{project-name}}-${[ matrix.artifact_prefix }}.tar.gz spt${[ matrix.binary_postfix }}
+          tar czvf {{project-name}}-{% raw %}${{ matrix.artifact_prefix }}{% endraw %}.tar.gz spt${[ matrix.binary_postfix }}
 
           if [[ ${[ runner.os }} == 'Windows' ]]; then
             certutil -hashfile {{project-name}}-${[ matrix.artifact_prefix }}.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > {{project-name}}-${[ matrix.artifact_prefix }}.sha256
