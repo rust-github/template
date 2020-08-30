@@ -6,6 +6,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 {% raw %}
+
 jobs:
   publish:
     name: Publishing for ${{ matrix.os }}
@@ -48,7 +49,9 @@ jobs:
         run: |
           cd target/${{ matrix.target }}/release
           strip spt${{ matrix.binary_postfix }}
+
 {% endraw %}
+
           tar czvf {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.tar.gz spt${[ matrix.binary_postfix }}
 
           if [[ ${[ runner.os }} == 'Windows' ]]; then
