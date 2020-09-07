@@ -11,11 +11,13 @@ possible.
 
 ## Reporting issues
 
-Issues have to be reported on our [[https://github.com/{[username]}/{{project-name}}/issues][issues tracker]]. Please:
+Issues have to be reported on our [issue tracker][issue-tracker]. Please:
 
 - Check that the issue has not already been reported.
-  - This can be achieved by searching keywords on the [[https://github.com/{[username]}/{{project-name}}/issues][issues tracker]].
+  - This can be achieved by searching keywords on the [issue tracker][issue-tracker].
 - Try to use a clear title, and describe your problem with complete sentences.
+
+[issue-tracker]: https://github.com/{[username]}/{{project-name}}/issues
 
 ## Pull requests
 
@@ -24,12 +26,12 @@ Try to do one pull request per change.
 ### Updating the changelog
 
 Update the changes you have made in
-[CHANGELOG](https://github.com/{[username]}/{{project-name}}/blob/master/CHANGELOG.org)
+[CHANGELOG](https://github.com/{[username]}/{{project-name}}/blob/master/CHANGELOG.md)
 file under the **Unreleased** section.
 
 Add the changes of your pull request to one of the following subsections,
 depending on the types of changes defined by
-[[https://keepachangelog.com/en/1.0.0/][Keep a changelog]]:
+[Keep a changelog](https://keepachangelog.com/en/1.0.0/):
 
 - `Added` for new features.
 - `Changed` for changes in existing functionality.
