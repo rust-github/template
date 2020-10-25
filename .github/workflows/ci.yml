@@ -1,8 +1,6 @@
 on: [push, pull_request]
 name: Continuous Integration
-
 {% raw  %}
-
 jobs:
 
   test:
@@ -81,5 +79,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './lcov.info'
-
 {% endraw  %}

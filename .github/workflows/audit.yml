@@ -9,9 +9,7 @@ on:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
   pull_request:
-
 {% raw  %}
-
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -21,5 +19,4 @@ jobs:
       - uses: actions-rs/audit-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
 {% endraw  %}
