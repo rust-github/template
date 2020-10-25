@@ -1,6 +1,8 @@
 on: [push, pull_request]
 name: Continuous Integration
 
+{% raw  %}
+
 jobs:
 
   test:
@@ -74,8 +76,10 @@ jobs:
           args: '--ignore-tests --out Lcov'
       - name: Upload to Coveralls
         # upload only if push
-        if: {{ "${{ github.event_name == 'push' " }}}}
+        if: ${{ github.event_name == 'push' }}
         uses: coverallsapp/github-action@master
         with:
-          github-token: {{ "${{ secrets.GITHUB_TOKEN " }}}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './lcov.info'
+
+{% endraw  %}
