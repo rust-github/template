@@ -5,10 +5,6 @@ First off, thank you for considering contributing to {{project-name}}.
 If your contribution is not straightforward, please first discuss the change you
 wish to make by creating a new issue before making the change.
 
-One of the project goals is to be easy to understand so, expacially for github
-actions, try to keep things simple and to add comments whenever this is not
-possible.
-
 ## Reporting issues
 
 Issues have to be reported on our [issue tracker][issue-tracker]. Please:
