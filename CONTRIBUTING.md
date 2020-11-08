@@ -7,13 +7,10 @@ wish to make by creating a new issue before making the change.
 
 ## Reporting issues
 
-Issues have to be reported on our [issue tracker][issue-tracker]. Please:
-
-- Check that the issue has not already been reported.
-  - This can be achieved by searching keywords on the [issue tracker][issue-tracker].
-- Try to use a clear title, and describe your problem with complete sentences.
-
-[issue-tracker]: https://github.com/{[username]}/{{project-name}}/issues
+Before reporting an issue on the
+[issue tracker](https://github.com/{[username]}/{{project-name}}/issues),
+please check that it has not already been reported by searching for some related
+keywords.
 
 ## Pull requests
 
