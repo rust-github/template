@@ -8,6 +8,32 @@
 [![MIT License](https://img.shields.io/github/license/yoshanuikabundi/{{project-name}})](https://github.com/yoshanuikabundi/{{project-name}}/blob/main/LICENSE-MIT)
 [![APACHE License](https://img.shields.io/github/license/yoshanuikabundi/{{project-name}})](https://github.com/yoshanuikabundi/{{project-name}}/blob/main/LICENSE-APACHE)
 
-This project has not been documented yet
+## New projects
 
-License: MIT OR Apache-2.0
+Install cargo-generate:
+
+```shell
+cargo install cargo-generate
+```
+
+Generate a new project:
+
+```shell
+cargo generate --git https://github.com/Yoshanuikabundi/rust-template.git -b main
+```
+
+## Updating README.md
+
+This template uses cargo-readme to incorporate crate-level documentation into README.md
+
+Install cargo-readme:
+
+```shell
+cargo install cargo-readme
+```
+
+Update README.md:
+
+```shell
+cargo readme > README.md
+```

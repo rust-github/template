@@ -1,4 +1,4 @@
-# {{crate}}
+# {{"{{crate}}"}}
 
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/yoshanuikabundi/{{project-name}}?label=tag&logo=github&sort=semver)](https://github.com/yoshanuikabundi/{{project-name}})
 [![Crates.io](https://img.shields.io/crates/v/{{project-name}}.svg)](https://crates.io/crates/{{project-name}})
@@ -8,6 +8,6 @@
 [![MIT License](https://img.shields.io/github/license/yoshanuikabundi/{{project-name}})](https://github.com/yoshanuikabundi/{{project-name}}/blob/main/LICENSE-MIT)
 [![APACHE License](https://img.shields.io/github/license/yoshanuikabundi/{{project-name}})](https://github.com/yoshanuikabundi/{{project-name}}/blob/main/LICENSE-APACHE)
 
-{{readme}}
+{{"{{readme}}"}}
 
-License: {{license}}
+License: {{"{{license}}"}}
