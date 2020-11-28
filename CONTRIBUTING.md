@@ -1,30 +1,26 @@
 # Contribution guidelines
 
-First off, thank you for considering contributing to {{project-name}}.
+Thanks for considering contributing to {{project-name}}!
 
-If your contribution is not straightforward, please first discuss the change you
-wish to make by creating a new issue before making the change.
-
-## Reporting issues
-
-Before reporting an issue on the
-[issue tracker](https://github.com/{[username]}/{{project-name}}/issues),
-please check that it has not already been reported by searching for some related
-keywords.
+If you intend to provide a substantial contribution, please consider first creating an issue to discuss the changes with other maintainers.
 
 ## Pull requests
 
-Try to do one pull request per change.
+Before you submit a pull request, please consider these guidelines:
+
+- Always follow the [code of conduct](https://www.rust-lang.org/conduct.html)
+- Submit unrelated changes in separate pull requests
+- Add a descriptive entry to the changelog (see below)
+- Ensure your code...
+  - passes all tests
+  - is formatted according to `rustfmt`
+  - compiles without warnings
+  - passes the enabled `clippy` lints without warnings
+  - is appropriately documented
 
 ### Updating the changelog
 
-Update the changes you have made in
-[CHANGELOG](https://github.com/{[username]}/{{project-name}}/blob/master/CHANGELOG.md)
-file under the **Unreleased** section.
-
-Add the changes of your pull request to one of the following subsections,
-depending on the types of changes defined by
-[Keep a changelog](https://keepachangelog.com/en/1.0.0/):
+When submitting a pull request, please add an entry briefly describing your contribution to the **Unreleased** section of [CHANGELOG.md](https://github.com/{[username]}/{{project-name}}/blob/main/CHANGELOG.md). This helps us provide a detailed changelog to our users at release time. Please use the appropriate subsection:
 
 - `Added` for new features.
 - `Changed` for changes in existing functionality.
@@ -32,49 +28,3 @@ depending on the types of changes defined by
 - `Removed` for now removed features.
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
-
-If the required subsection does not exist yet under **Unreleased**, create it!
-
-## Developing
-
-### Set up
-
-This is no different than other Rust projects.
-
-```shell
-git clone https://github.com/{[username]}/{{project-name}}
-cd {{project-name}}
-cargo build
-```
-
-### Useful Commands
-
-- Build and run release version:
-
-  ```shell
-  cargo build --release && cargo run --release
-  ```
-
-- Run Clippy:
-
-  ```shell
-  cargo clippy --all
-  ```
-
-- Run all tests:
-
-  ```shell
-  cargo test --all
-  ```
-
-- Check to see if there are code formatting issues
-
-  ```shell
-  cargo fmt --all -- --check
-  ```
-
-- Format the code in the project
-
-  ```shell
-  cargo fmt --all
-  ```

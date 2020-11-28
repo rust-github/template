@@ -3,10 +3,12 @@ name = "{{project-name}}"
 version = "0.1.0"
 authors = ["{{authors}}"]
 edition = "2018"
-description = "{{project-name}} mandatory description"
 repository = "https://github.com/{[username]}/{{project-name}}"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
+description = "{{project-name}}" # Description that appears in crates.io
+keywords = [] # Keywords for discoverability. crates.io accepts a maximum of 5 keywords fitting the regex /[a-Z][a-Z0-9\-_]{0,19}/
+categories = [] # Categories for discoverability. crates.io accepts a maximum of 5 categories from the list at https://crates.io/category_slugs
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
