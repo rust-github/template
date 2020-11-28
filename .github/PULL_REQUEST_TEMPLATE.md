@@ -1,12 +1,13 @@
-<!-- Please explain the changes you made -->
+<!-- Thanks for your pull request! Please describe your contribution -->
 
-<!--
-Please, make sure:
-- you have read the contributing guidelines:
-  https://github.com/{[username]}/{{project-name}}/blob/master/docs/CONTRIBUTING.md
-- you have formatted the code using rustfmt:
+
+
+<!-- Please also...
+- read the contributing guidelines:
+  https://github.com/{[username]}/{{project-name}}/blob/main/docs/CONTRIBUTING.md
+- format your code with rustfmt:
   https://github.com/rust-lang/rustfmt
-- you have checked that all tests pass, by running `cargo test --all`
-- you have updated the changelog (if needed):
-  https://github.com/{[username]}/{{project-name}}/blob/master/CHANGELOG.md
+- check that all tests pass, by running `cargo test --all`
+- update the changelog (if needed):
+  https://github.com/{[username]}/{{project-name}}/blob/main/CHANGELOG.md
 -->

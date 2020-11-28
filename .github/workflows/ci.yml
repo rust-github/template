@@ -75,7 +75,7 @@ jobs:
       - name: Upload to Coveralls
         # upload only if push
         if: ${{ github.event_name == 'push' }}
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './lcov.info'
