@@ -20,7 +20,7 @@ Before you submit a pull request, please consider these guidelines:
 
 ### Updating the changelog
 
-When submitting a pull request, please add an entry briefly describing your contribution to the **Unreleased** section of [CHANGELOG.md](https://github.com/{[username]}/{{project-name}}/blob/main/CHANGELOG.md). This helps us provide a detailed changelog to our users at release time. Please use the appropriate subsection:
+When submitting a pull request, please add an entry briefly describing your contribution to the **Unreleased** section of [CHANGELOG.md](https://github.com/yoshanuikabundi/{{project-name}}/blob/main/CHANGELOG.md). This helps us provide a detailed changelog to our users at release time. Please use the appropriate subsection:
 
 - `Added` for new features.
 - `Changed` for changes in existing functionality.
