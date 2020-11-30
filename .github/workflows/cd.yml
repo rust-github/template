@@ -32,6 +32,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: {{ "${{ matrix.rust " }}}}
+          profile: minimal
           override: true
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -71,6 +72,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          profile: minimal
           override: true
       - uses: actions-rs/cargo@v1
         with:

@@ -67,6 +67,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          prifile: minimal
           override: true
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
