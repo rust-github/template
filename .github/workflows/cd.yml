@@ -76,7 +76,7 @@ jobs:
 
           ####### reduce binary size by removing debug symbols #######
           BINARY_NAME={{project-name}}{{ "${{ matrix.job.binary-postfix " }}}}
-          if [[ ${{ matrix.job.target }} == aarch64-unknown-linux-gnu ]]; then
+          if [[ {{ "${{ matrix.job.target " }}}} == aarch64-unknown-linux-gnu ]]; then
             GCC_PREFIX="aarch64-linux-gnu-"
           else
             GCC_PREFIX=""
