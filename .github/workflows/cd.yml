@@ -46,20 +46,23 @@ jobs:
         shell: bash
         run: |
           cd target/{{ "${{ matrix.job.target " }}}}/release
-          strip {{project-name}}{{ "${{ matrix.job.binary_postfix " }}}}
-          tar czvf {{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.tar.gz {{project-name}}{{ "${{ matrix.job.binary_postfix " }}}}
+          BINARY_NAME={{project-name}}{{ "${{ matrix.job.binary_postfix " }}}}
+          strip $BINARY_NAME
+
+          RELEASE_NAME={{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}
+          tar czvf $RELEASE_NAME.tar.gz $BINARY_NAME
 
           if [[ {{ "${{ runner.os " }}}} == 'Windows' ]]; then
-            certutil -hashfile {{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > {{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.sha256
+            certutil -hashfile $RELEASE_NAME.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > $RELEASE_NAME.sha256
           else
-            shasum -a 256 {{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.tar.gz > {{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.sha256
+            shasum -a 256 $RELEASE_NAME.tar.gz > $RELEASE_NAME.sha256
           fi
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.tar.gz
-            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}.sha256
+            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-*.tar.gz
+            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-*.sha256
         env:
           GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN " }}}}
 
