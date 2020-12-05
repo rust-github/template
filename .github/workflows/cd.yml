@@ -49,7 +49,7 @@ jobs:
           BINARY_NAME={{project-name}}{{ "${{ matrix.job.binary_postfix " }}}}
           strip $BINARY_NAME
 
-          RELEASE_NAME={{project-name}}-{{ "${{ matrix.job.artifact_prefix " }}}}
+          RELEASE_NAME={{project-name}}-${GITHUB_REF/refs\/tags\//}-{{ "${{ matrix.job.artifact_prefix " }}}}
           tar czvf $RELEASE_NAME.tar.gz $BINARY_NAME
 
           if [[ {{ "${{ runner.os " }}}} == 'Windows' ]]; then
