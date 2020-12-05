@@ -58,7 +58,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          use-cross: ${{ matrix.job.use-cross }}
+          use-cross: {{ "${{ matrix.job.use-cross " }}}}
           toolchain: {{ "${{ matrix.rust " }}}}
           args: --release --target {{ "${{ matrix.job.target " }}}}
 
