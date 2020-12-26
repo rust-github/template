@@ -1,4 +1,7 @@
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, master]
+  pull_request:
 name: Continuous Integration
 {% raw  %}
 jobs:
