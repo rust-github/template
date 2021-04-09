@@ -8,4 +8,3 @@
 - check that all tests pass, by running `cargo test --all`
 - update the changelog (if needed):
   https://github.com/yoshanuikabundi/{{project-name}}/blob/main/CHANGELOG.md
--->
