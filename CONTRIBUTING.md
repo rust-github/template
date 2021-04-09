@@ -28,3 +28,4 @@ When submitting a pull request, please add an entry briefly describing your cont
 - `Removed` for now removed features.
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
+
