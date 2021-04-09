@@ -7,31 +7,50 @@ on:
 
 jobs:
   publish:
-    name: Publishing for {{ "${{ matrix.os " }}}}
-    runs-on: {{ "${{ matrix.os " }}}}
+    name: Publishing for {{ "${{ matrix.job.os " }}}}
+    runs-on: {{ "${{ matrix.job.os " }}}}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
         rust: [stable]
-        include:
+        job:
           - os: macos-latest
-            artifact_prefix: macos
+            os-name: macos
             target: x86_64-apple-darwin
-            binary_postfix: ""
+            architecture: x86_64
+            binary-postfix: ""
+            use-cross: false
           - os: ubuntu-latest
-            artifact_prefix: linux
+            os-name: linux
             target: x86_64-unknown-linux-gnu
-            binary_postfix: ""
+            architecture: x86_64
+            binary-postfix: ""
+            use-cross: false
           - os: windows-latest
-            artifact_prefix: windows
+            os-name: windows
             target: x86_64-pc-windows-msvc
-            binary_postfix: ".exe"
+            architecture: x86_64
+            binary-postfix: ".exe"
+            use-cross: false
+          - os: ubuntu-latest
+            os-name: linux
+            target: aarch64-unknown-linux-gnu
+            architecture: arm64
+            binary-postfix: ""
+            use-cross: true
+          - os: ubuntu-latest
+            os-name: linux
+            target: i686-unknown-linux-gnu
+            architecture: i686
+            binary-postfix: ""
+            use-cross: true
+
 
     steps:
       - name: Installing Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: {{ "${{ matrix.rust " }}}}
+          profile: minimal
           override: true
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,27 +58,47 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
+          use-cross: {{ "${{ matrix.job.use-cross " }}}}
           toolchain: {{ "${{ matrix.rust " }}}}
-          args: --release --target {{ "${{ matrix.target " }}}}
+          args: --release --target {{ "${{ matrix.job.target " }}}}
 
+      - name: install strip command
+        shell: bash
+        run: |
+          if [[ {{ "${{ matrix.job.target " }}}} == aarch64-unknown-linux-gnu ]]; then
+              sudo apt update
+              sudo apt-get install -y binutils-aarch64-linux-gnu
+          fi
       - name: Packaging final binary
         shell: bash
         run: |
-          cd target/{{ "${{ matrix.target " }}}}/release
-          strip {{project-name}}{{ "${{ matrix.binary_postfix " }}}}
-          tar czvf {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.tar.gz {{project-name}}{{ "${{ matrix.binary_postfix " }}}}
+          cd target/{{ "${{ matrix.job.target " }}}}/release
 
-          if [[ {{ "${{ runner.os " }}}} == 'Windows' ]]; then
-            certutil -hashfile {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.sha256
+          ####### reduce binary size by removing debug symbols #######
+          BINARY_NAME={{project-name}}{{ "${{ matrix.job.binary-postfix " }}}}
+          if [[ {{ "${{ matrix.job.target " }}}} == aarch64-unknown-linux-gnu ]]; then
+            GCC_PREFIX="aarch64-linux-gnu-"
           else
-            shasum -a 256 {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.tar.gz > {{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.sha256
+            GCC_PREFIX=""
+          fi
+          "$GCC_PREFIX"strip $BINARY_NAME
+
+          ########## create tar.gz ##########
+          RELEASE_NAME={{project-name}}-${GITHUB_REF/refs\/tags\//}-{{ "${{ matrix.job.os-name " }}}}-{{ "${{ matrix.job.architecture " }}}}
+          tar czvf $RELEASE_NAME.tar.gz $BINARY_NAME
+
+          ########## create sha256 ##########
+          if [[ {{ "${{ runner.os " }}}} == 'Windows' ]]; then
+            certutil -hashfile $RELEASE_NAME.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > $RELEASE_NAME.sha256
+          else
+            shasum -a 256 $RELEASE_NAME.tar.gz > $RELEASE_NAME.sha256
           fi
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            target/{{ "${{ matrix.target " }}}}/release/{{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.tar.gz
-            target/{{ "${{ matrix.target " }}}}/release/{{project-name}}-{{ "${{ matrix.artifact_prefix " }}}}.sha256
+            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-*.tar.gz
+            target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-*.sha256
         env:
           GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN " }}}}
 
@@ -71,6 +110,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          profile: minimal
           override: true
       - uses: actions-rs/cargo@v1
         with:

@@ -1,7 +1,5 @@
 <!-- Thanks for your pull request! Please describe your contribution -->
 
-
-
 <!-- Please also...
 - read the contributing guidelines:
   https://github.com/yoshanuikabundi/{{project-name}}/blob/main/docs/CONTRIBUTING.md
