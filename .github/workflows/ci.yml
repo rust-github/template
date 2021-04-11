@@ -54,7 +54,7 @@ jobs:
           profile: minimal
           override: true
           components: clippy
-      - name: Clippy Check
+      - name: Clippy check
         uses: actions-rs/cargo@v1
         with:
           command: clippy
@@ -72,7 +72,7 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - name: Docs Check
+      - name: Check documentation
         env:
           RUSTDOCFLAGS: -D warnings
         uses: actions-rs/cargo@v1
