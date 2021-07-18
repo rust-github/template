@@ -6,6 +6,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
+{% if crate_type == "bin" %}
   publish:
     name: Publishing for {{ "${{ matrix.job.os " }}}}
     runs-on: {{ "${{ matrix.job.os " }}}}
@@ -101,6 +102,7 @@ jobs:
             target/{{ "${{ matrix.job.target " }}}}/release/{{project-name}}-*.sha256
         env:
           GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN " }}}}
+{% endif %}
 
   publish-cargo:
     name: Publishing to Cargo
