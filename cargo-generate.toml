@@ -1,3 +1,7 @@
 [placeholders.username]
 type = "string"
 prompt = "GitHub username (or organization)?"
+
+[placeholders.project-description]
+type = "string"
+prompt = "Project description?"

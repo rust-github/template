@@ -2,7 +2,7 @@
 name = "{{project-name}}"
 version = "0.1.0"
 edition = "2018"
-description = "{{project-name}} mandatory description"
+description = "{{project-description}}"
 repository = "https://github.com/{{username}}/{{project-name}}"
 license = "MIT OR Apache-2.0"
 
