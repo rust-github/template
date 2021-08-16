@@ -1,8 +1,9 @@
+name: CI # Continuous Integration
+
 on:
   push:
     branches: main
   pull_request:
-name: Continuous Integration
 {% raw  %}
 jobs:
 
