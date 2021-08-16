@@ -44,7 +44,7 @@ This is no different than other Rust projects.
 ```shell
 git clone https://github.com/{{username}}/{{project-name}}
 cd {{project-name}}
-cargo build
+cargo test
 ```
 
 ### Useful Commands
@@ -58,13 +58,13 @@ cargo build
 - Run Clippy:
 
   ```shell
-  cargo clippy --all
+  cargo clippy --all-targets --all-features --workspace
   ```
 
 - Run all tests:
 
   ```shell
-  cargo test --all
+  cargo test --all-features --workspace
   ```
 
 - Check to see if there are code formatting issues
