@@ -46,7 +46,7 @@ jobs:
             use-cross: true
 
     steps:
-      - name: Installing Rust toolchain
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: {{ "${{ matrix.rust " }}}}
