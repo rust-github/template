@@ -2,7 +2,7 @@
 name = "{{project-name}}"
 version = "0.1.0"
 edition = "2018"
-repository = "https://github.com/yoshanuikabundi/{{project-name}}"
+repository = "https://github.com/{{username}}/{{project-name}}"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 description = "{{project-name}}" # Description that appears in crates.io

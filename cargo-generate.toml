@@ -1,3 +1,6 @@
+[template]
+exclude = []
+
 [placeholders.username]
 type = "string"
 prompt = "GitHub username (or organization)?"
