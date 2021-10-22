@@ -2,7 +2,8 @@ name: CI # Continuous Integration
 
 on:
   push:
-    branches: main
+    branches:
+      - main
   pull_request:
 {% raw  %}
 jobs:
