@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Run cargo generate
-        uses: cargo-generate/cargo-generate-action@0.10.0
+        uses: cargo-generate/cargo-generate-action@v0.10.1
         with:
           name: ${{ env.PROJECT_NAME }}
           subfolder: template
