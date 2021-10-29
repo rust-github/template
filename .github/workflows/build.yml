@@ -9,13 +9,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: template
+      PROJECT_NAME: rust-gh-example
     steps:
       - uses: actions/checkout@v2
       - name: cargo-generate
       - uses: cargo-generate/cargo-generate-action@0.10.1
         with:
           name: ${{ env.PROJECT_NAME }}
+          subfolder: template
+          other: >
+            --define username=\"rust-github\"
+            --define project-description=\"Example of Rust GitHub template\"
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
