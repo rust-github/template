@@ -1,6 +1,10 @@
 name: Build Template
 on:
   push:
+  # TODO Add this code block once https://github.com/cargo-generate/cargo-generate-action/issues/5 is fixed:
+  #   branches:
+  #     - main
+  # pull_request:
 
 jobs:
   build:
