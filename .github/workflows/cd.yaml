@@ -1,0 +1,67 @@
+name: Synchronize the example with the template
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  synchronize_example:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: rust-gh-example
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run cargo generate
+        uses: cargo-generate/cargo-generate-action@v0.10.1
+        with:
+          name: ${{ env.PROJECT_NAME }}
+          subfolder: template
+          template_values_file: .github/workflows/template_values.toml
+
+      - name: Checkout old example
+        uses: actions/checkout@v2
+        with:
+          repository: rust-github/rust-gh-example
+          path: old_example
+          ssh-key: ${{ secrets.GH_EXAMPLE_DEPLOY_SECRET }}
+
+      - name: move sources, mit license and Cargo.toml from old to new example
+        run: |
+          echo "pwd:"
+          pwd
+          echo "ls -al:"
+          ls -al
+          rm rust-gh-example/src/main.rs
+          rm rust-gh-example/Cargo.toml
+          rm rust-gh-example/LICENSE-MIT
+          cp old_example/src/* rust-gh-example/src/
+          cp old_example/Cargo.toml rust-gh-example/Cargo.toml
+          cp old_example/LICENSE-MIT rust-gh-example/LICENSE-MIT
+      - name: update example
+        run: |
+          mkdir old_sources
+          mv old_example/src/* old_sources
+          cd old_example
+          rm -rf * .gitignore .github/
+          echo "ls ../rust-gh-example:"
+          ls ../rust-gh-example
+          echo "ls ../rust-gh-example/src:"
+          ls ../rust-gh-example/src
+          mv ../rust-gh-example/* ../rust-gh-example/.github ../rust-gh-example/.gitignore .
+          echo "ls -al:"
+          ls -al
+          rm src/*
+          mv ../old_sources/* src
+      - name: commit example
+        run: |
+          cd old_example
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "automatic update" -m "from $GITHUB_REPOSITORY@$GITHUB_SHA"
+            git push
+          else
+            echo "nothing to commit";
+          fi
