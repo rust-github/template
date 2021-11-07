@@ -4,6 +4,7 @@ cargo_generate_version = ">=0.10.0"
 [placeholders.gh-username]
 type = "string"
 prompt = "GitHub username (or organization)?"
+regex = "[A-Za-z0-9][A-Za-z0-9-]{0,38}"
 
 [placeholders.project-description]
 type = "string"
