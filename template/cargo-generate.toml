@@ -1,7 +1,7 @@
 [template]
 cargo_generate_version = ">=0.10.0"
 
-[placeholders.username]
+[placeholders.gh-username]
 type = "string"
 prompt = "GitHub username (or organization)?"
 
