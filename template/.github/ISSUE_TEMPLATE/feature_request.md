@@ -7,12 +7,13 @@ assignees: ''
 
 ---
 
-## Problem
+## Motivations
 
 <!--
 If your feature request is related to a problem, please describe it.
-Ex. I hate when [...]
 -->
+
+- Would you like to implement this feature? [y/n]
 
 ## Solution
 

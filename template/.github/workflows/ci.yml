@@ -1,8 +1,10 @@
+name: CI # Continuous Integration
+
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
   pull_request:
-name: Continuous Integration
 {% raw  %}
 jobs:
 
@@ -12,16 +14,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
+      - uses: Swatinem/rust-cache@v1
       - uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --workspace
+          args: --all-features --workspace
 
   rustfmt:
     name: Rustfmt
@@ -29,13 +32,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
           components: rustfmt
+      - uses: Swatinem/rust-cache@v1
       - name: Check formatting
         uses: actions-rs/cargo@v1
         with:
@@ -48,13 +52,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
           components: clippy
+      - uses: Swatinem/rust-cache@v1
       - name: Clippy check
         uses: actions-rs/cargo@v1
         with:
@@ -67,19 +72,38 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
+      - uses: Swatinem/rust-cache@v1
       - name: Check documentation
         env:
           RUSTDOCFLAGS: -D warnings
         uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: --no-deps --document-private-items --all-features --workspace
+          args: --no-deps --document-private-items --all-features --workspace --examples
+
+  publish-dry-run:
+    name: Publish dry run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      - uses: Swatinem/rust-cache@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --dry-run
 
   coverage:
     name: Code coverage
@@ -87,16 +111,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install stable toolchain
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
+      - uses: Swatinem/rust-cache@v1
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
-          args: '--ignore-tests --out Lcov'
+          args: '--all-features --workspace --ignore-tests --out Lcov'
       - name: Upload to Coveralls
         # upload only if push
         if: ${{ github.event_name == 'push' }}

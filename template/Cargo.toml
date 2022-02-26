@@ -1,8 +1,9 @@
 [package]
 name = "{{project-name}}"
 version = "0.1.0"
-edition = "2018"
-repository = "https://github.com/{{username}}/{{project-name}}"
+edition = "2021"
+description = "{{project-description}}"
+repository = "https://github.com/{{gh-username}}/{{project-name}}"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 description = "{{project-name}}" # Description that appears in crates.io
