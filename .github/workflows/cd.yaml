@@ -19,49 +19,18 @@ jobs:
           subfolder: template
           template_values_file: .github/workflows/template_values.toml
 
-      - name: Checkout old example
-        uses: actions/checkout@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          repository: rust-github/rust-gh-example
-          path: old_example
-          ssh-key: ${{ secrets.GH_EXAMPLE_DEPLOY_SECRET }}
-
-      - name: move sources, mit license and Cargo.toml from old to new example
-        run: |
-          echo "pwd:"
-          pwd
-          echo "ls -al:"
-          ls -al
-          rm rust-gh-example/src/main.rs
-          rm rust-gh-example/Cargo.toml
-          rm rust-gh-example/LICENSE-MIT
-          cp old_example/src/* rust-gh-example/src/
-          cp old_example/Cargo.toml rust-gh-example/Cargo.toml
-          cp old_example/LICENSE-MIT rust-gh-example/LICENSE-MIT
-      - name: update example
-        run: |
-          mkdir old_sources
-          mv old_example/src/* old_sources
-          cd old_example
-          rm -rf * .gitignore .github/
-          echo "ls ../rust-gh-example:"
-          ls ../rust-gh-example
-          echo "ls ../rust-gh-example/src:"
-          ls ../rust-gh-example/src
-          mv ../rust-gh-example/* ../rust-gh-example/.github ../rust-gh-example/.gitignore .
-          echo "ls -al:"
-          ls -al
-          rm src/*
-          mv ../old_sources/* src
-      - name: commit example
-        run: |
-          cd old_example
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "automatic update" -m "from $GITHUB_REPOSITORY@$GITHUB_SHA"
-            git push
-          else
-            echo "nothing to commit";
-          fi
+          deploy_key: ${{ secrets.GH_EXAMPLE_DEPLOY_SECRET }}
+          external_repository: rust-github/${{ env.PROJECT_NAME }}
+          publish_branch: main
+          publish_dir: ./${{ env.PROJECT_NAME }}
+          # Set exclude_assets to empty for including the .github directory to deployment assets.
+          exclude_assets: ''
+          # Remove .nojekyll
+          enable_jekyll: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          full_commit_message: "ci: deploy a cxx sample by cargo generate"
+          # force_orphan: true
