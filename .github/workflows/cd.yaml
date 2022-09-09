@@ -32,5 +32,5 @@ jobs:
           enable_jekyll: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          full_commit_message: "ci: deploy a cxx sample by cargo generate"
+          full_commit_message: "ci: deploy a rust sample by cargo generate"
           # force_orphan: true
