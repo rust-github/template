@@ -20,7 +20,7 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/cargo@v1
         with:
           command: test
@@ -39,7 +39,7 @@ jobs:
           profile: minimal
           override: true
           components: rustfmt
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - name: Check formatting
         uses: actions-rs/cargo@v1
         with:
@@ -59,7 +59,7 @@ jobs:
           profile: minimal
           override: true
           components: clippy
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - name: Clippy check
         uses: actions-rs/cargo@v1
         with:
@@ -78,7 +78,7 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - name: Check documentation
         env:
           RUSTDOCFLAGS: -D warnings
@@ -99,7 +99,7 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/cargo@v1
         with:
           command: publish
@@ -117,7 +117,7 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
