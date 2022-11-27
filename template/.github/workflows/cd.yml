@@ -58,7 +58,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: {{ "${{ matrix.rust " }}}}
-          target: {{ "${{ matrix.target " }}}}
+          target: {{ "${{ matrix.job.target " }}}}
           profile: minimal
           override: true
       - uses: Swatinem/rust-cache@v2
