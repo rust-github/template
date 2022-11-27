@@ -123,5 +123,7 @@ jobs:
           override: true
       - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/cargo@v1
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         with:
           command: publish
