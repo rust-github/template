@@ -20,11 +20,7 @@ jobs:
           subfolder: template
           template_values_file: .github/workflows/template_values.toml
       - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          profile: minimal
-          override: true
+        uses: dtolnay/rust-toolchain@stable
       - name: Cargo check
         # we need to move the generated project to a temp folder, away from the template project
         # otherwise `cargo` runs would fail
