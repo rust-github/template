@@ -12,7 +12,7 @@ jobs:
       PROJECT_NAME: rust-gh-example
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run cargo generate
         uses: cargo-generate/cargo-generate-action@v0.18.3
         with:
