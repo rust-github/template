@@ -14,11 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Run cargo generate
-        uses: cargo-generate/cargo-generate-action@v0.18.3
+        uses: cargo-generate/cargo-generate-action@v0.18.5
         with:
           name: ${{ env.PROJECT_NAME }}
-          subfolder: template
-          template_values_file: .github/workflows/template_values.toml
+          template: template
+          arguments: "--template-values-file .github/workflows/template_values.toml --verbose"
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Cargo check
