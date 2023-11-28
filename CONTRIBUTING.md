@@ -25,11 +25,8 @@ Try to do one pull request per change.
 ## GitHub Actions
 
 When we have to mix GitHub actions variables with the `{{ }}` liquid syntax,
-GitHub actions variable are written in the format
-`{{ "{{ github.variable " }}}}` instead of `{{ github.variable }}`.
-
-Of course, when doing `cargo generate` the ugly version is replaced with the
-expected one.
+GitHub actions variables are written in the format
+`{{ "{{ github.variable }}" }}` instead of `{{ github.variable }}`.
 
 See [Continuous delivery](https://github.com/rust-github/template/blob/main/.github/workflows/cd.yml)
 as an example.
