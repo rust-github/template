@@ -1,7 +1,7 @@
 name: Synchronize the example with the template
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   synchronize_example:
@@ -16,8 +16,8 @@ jobs:
         uses: cargo-generate/cargo-generate-action@v0.18.5
         with:
           name: ${{ env.PROJECT_NAME }}
-          subfolder: template
-          template_values_file: .github/workflows/template_values.toml
+          template: template
+          arguments: "--template-values-file .github/workflows/template_values.toml --verbose"
 
       - name: Checkout old example
         uses: actions/checkout@v4
