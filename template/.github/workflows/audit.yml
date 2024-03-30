@@ -16,11 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      # Ensure that the latest version of Cargo is installed
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/audit-check@v1
+      - name: Run security audit
+        uses: rustsec/audit-check@v1.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 {% endraw  %}
