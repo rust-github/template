@@ -19,6 +19,10 @@ jobs:
           template: template
           arguments: "--template-values-file .github/workflows/template_values.toml --verbose"
 
+      - name: Generate lockfile
+        run: |
+          cargo generate-lockfile
+
       - name: Checkout old example
         uses: actions/checkout@v4
         with:
