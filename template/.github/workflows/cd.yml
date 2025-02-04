@@ -10,6 +10,8 @@ jobs:
   publish:
     name: Publishing for {{ "${{ matrix.job.os }}" }}
     runs-on: {{ "${{ matrix.job.os }}" }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         rust: [stable]
