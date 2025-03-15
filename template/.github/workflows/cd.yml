@@ -58,12 +58,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: {{ "${{ matrix.rust }}" }}
           target: {{ "${{ matrix.job.target }}" }}
-          profile: minimal
-          override: true
       - uses: Swatinem/rust-cache@v2
       - name: Cargo build
         uses: actions-rs/cargo@v1
