@@ -8,7 +8,7 @@ on:
 jobs:
 {% if crate_type == "bin" %}
   publish:
-    name: Publishing for {{ "${{ matrix.job.os }}" }}
+    name: Publishing for {{ "${{ matrix.job.os-name }}" }}-{{ "${{ matrix.job.architecture }}" }}
     runs-on: {{ "${{ matrix.job.os }}" }}
     permissions:
       contents: write
