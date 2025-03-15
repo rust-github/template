@@ -13,6 +13,7 @@ jobs:
     permissions:
       contents: write
     strategy:
+      fail-fast: false
       matrix:
         rust: [stable]
         job:
