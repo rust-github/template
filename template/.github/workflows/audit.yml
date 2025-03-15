@@ -16,10 +16,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cargo/bin/cargo-audit
-          key: ${{ runner.os }}-cargo-audit
+      - uses: Swatinem/rust-cache@v2
       - name: Run security audit
         uses: rustsec/audit-check@v2.0.0
         with:
