@@ -28,5 +28,5 @@ When we have to mix GitHub actions variables with the `{{ }}` liquid syntax,
 GitHub actions variables are written in the format
 `{{ "{{ github.variable }}" }}` instead of `{{ github.variable }}`.
 
-See [Continuous delivery](https://github.com/rust-github/template/blob/main/.github/workflows/cd.yml)
+See [Continuous delivery](https://github.com/rust-github/template/blob/main/template/.github/workflows/cd.yml)
 as an example.
