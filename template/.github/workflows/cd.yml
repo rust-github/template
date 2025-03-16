@@ -67,7 +67,7 @@ jobs:
         shell: bash
         run: |
           BINARY=target/{{ "${{ matrix.job.target }}" }}/release/{{project-name}}
-          if [[ {{ "${{ matrix.job.os }}" }} == windows-latest ]]; then
+          if [[ {{ "${{ runner.os }}" }} == 'Windows' ]]; then
             BINARY=$BINARY.exe
           fi
 
