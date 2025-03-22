@@ -24,6 +24,21 @@ jobs:
           cd $PROJECT_NAME
           cargo generate-lockfile
 
+      - name: Check for references
+        run: |
+          if git ls-remote --exit-code git@github.com:${{ github.repository_owner }}/${{ env.PROJECT_NAME }}.git; then
+            echo "References found in the remote repo"
+          else
+            echo "No references found in the remote repo"
+            mkdir tmp && cd tmp
+            git init
+            git branch -M main
+            git remote add origin git@github.com:PythonGermany/rust-gh-example.git
+            git commit --allow-empty -m "Initial commit"
+            git push -u origin main
+            rm -rf tmp
+          fi
+
       - name: Checkout old example
         uses: actions/checkout@v4
         with:
