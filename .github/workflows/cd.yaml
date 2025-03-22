@@ -31,6 +31,8 @@ jobs:
           else
             echo "No references found in the remote repo"
             mkdir tmp && cd tmp
+            git config user.name github-actions
+            git config user.email github-actions@github.com
             git init
             git branch -M main
             git remote add origin git@github.com:PythonGermany/rust-gh-example.git
