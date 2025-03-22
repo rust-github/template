@@ -17,50 +17,42 @@ jobs:
         with:
           name: ${{ env.PROJECT_NAME }}
           template: template
-          arguments: "--template-values-file .github/workflows/template_values.toml --verbose"
+          arguments: "--template-values-file .github/workflows/template_values.toml -d gh-username=${{ github.repository_owner }} --verbose"
 
       - name: Generate lockfile
         run: |
           cd $PROJECT_NAME
           cargo generate-lockfile
 
+      - name: Check for references
+        run: |
+          if git ls-remote --exit-code git@github.com:${{ github.repository_owner }}/${{ env.PROJECT_NAME }}.git; then
+            echo "References found in the remote repo"
+          else
+            echo "No references found in the remote repo"
+            mkdir tmp && cd tmp
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git init
+            git branch -M main
+            git remote add origin git@github.com:PythonGermany/rust-gh-example.git
+            git commit --allow-empty -m "Initial commit"
+            git push -u origin main
+            rm -rf tmp
+          fi
+
       - name: Checkout old example
         uses: actions/checkout@v4
         with:
-          repository: rust-github/rust-gh-example
-          path: old_example
+          repository: ${{ github.repository_owner }}/${{ env.PROJECT_NAME }}
+          path: ${{ env.PROJECT_NAME }}.old
           ssh-key: ${{ secrets.GH_EXAMPLE_DEPLOY_SECRET }}
 
-      - name: move sources, mit license and Cargo.toml from old to new example
-        run: |
-          echo "pwd:"
-          pwd
-          echo "ls -al:"
-          ls -al
-          rm rust-gh-example/src/main.rs
-          rm rust-gh-example/Cargo.toml
-          rm rust-gh-example/LICENSE-MIT
-          cp old_example/src/* rust-gh-example/src/
-          cp old_example/Cargo.toml rust-gh-example/Cargo.toml
-          cp old_example/LICENSE-MIT rust-gh-example/LICENSE-MIT
       - name: update example
-        run: |
-          mkdir old_sources
-          mv old_example/src/* old_sources
-          cd old_example
-          rm -rf * .gitignore .github/
-          echo "ls ../rust-gh-example:"
-          ls ../rust-gh-example
-          echo "ls ../rust-gh-example/src:"
-          ls ../rust-gh-example/src
-          mv ../rust-gh-example/* ../rust-gh-example/.github ../rust-gh-example/.gitignore .
-          echo "ls -al:"
-          ls -al
-          rm src/*
-          mv ../old_sources/* src
+        run: cp -rf ${{ env.PROJECT_NAME }}.old/.git ${{ env.PROJECT_NAME }}
       - name: commit example
         run: |
-          cd old_example
+          cd ${{ env.PROJECT_NAME }}
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
